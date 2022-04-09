@@ -1,0 +1,259 @@
+﻿@using MudBlazor.Utilities
+@using System.Drawing
+@using MudBlazor
+
+@switch (_structureMethod)
+{
+	case StructureMethod.MudBlazor:
+	{
+		<div class=@Classname>
+			<div class="d-flex flex-column" style="min-height: 100%;">
+				<div>
+					<div class="d-flex flex-column flex-grow-1 flex-shrink-0">
+						<div class="d-flex flex-row flex-grow-1 flex-shrink-0">
+							<MudCard Class="d-flex flex-grow-1 flex-shrink-0 ma-1" Style=@ColorStyle()>
+								<MudText Class="ma-auto">Header1 Left</MudText>
+							</MudCard>
+							<MudCard Class="d-flex flex-grow-1 flex-shrink-0 ma-1" Style=@ColorStyle()>
+								<MudText Class="ma-auto">Header1 Middle</MudText>
+							</MudCard>
+							<MudCard Class="d-flex flex-grow-1 flex-shrink-0 ma-1" Style=@ColorStyle()>
+								<MudText Class="ma-auto">Header1 Right</MudText>
+							</MudCard>
+						</div>
+
+						<div class="d-flex flex-row flex-grow-1 flex-shrink-0">
+							<MudCard Class="d-flex flex-grow-1 flex-shrink-0 ma-1" Style=@ColorStyle()>
+								<MudText Class="ma-auto">Header2 Left</MudText>
+							</MudCard>
+							<MudCard Class="d-flex flex-grow-1 flex-shrink-0 ma-1" Style=@ColorStyle()>
+								<MudText Class="ma-auto">Header2 Right</MudText>
+							</MudCard>
+						</div>
+					</div>
+				</div>
+				<div class="d-flex flex-grow-1 flex-shrink-0">
+					<nav class="d-flex flex-grow-0 flex-shrink-0 pa-1" style="width: 12em;">
+						<div class="d-block mud-theme-primary rounded pa-2 full-size">
+							<MudText>Nav</MudText>
+						</div>
+					</nav>
+					<div class="d-flex flex-column flex-grow-1 flex-shrink-0">
+						<div class="d-flex flex-row flex-grow-1 flex-shrink-0">
+							<MudCard Class="d-flex flex-grow-1 flex-shrink-0 ma-1" Style=@ColorStyle()>
+								<MudText Class="ma-auto">Upper Left</MudText>
+							</MudCard>
+							<MudCard Class="d-flex flex-grow-1 flex-shrink-0 ma-1" Style=@ColorStyle()>
+								<MudText Class="ma-auto">Upper Middle</MudText>
+							</MudCard>
+							<MudCard Class="d-flex flex-grow-1 flex-shrink-0 ma-1" Style=@ColorStyle()>
+								<MudText Class="ma-auto">Upper Right</MudText>
+							</MudCard>
+						</div>
+						<MudCard Class="d-flex flex-grow-1 flex-shrink-0 ma-1" Style=@ColorStyle()>
+							<MudText Class="ma-auto">Middle</MudText>
+						</MudCard>
+						<MudCard Class="d-flex flex-grow-1 flex-shrink-0 ma-1" Style=@ColorStyle()>
+							<MudText Class="ma-auto">Lower</MudText>
+						</MudCard>
+					</div>
+					<MudCard Class="d-flex flex-grow-0 flex-shrink-0 ma-1" Style=@ColorStyle("width: 12em;")>
+						<MudText Class="ma-auto">Right Margin</MudText>
+					</MudCard>
+				</div>
+				<MudCard Class="d-flex flex-grow-0 flex-shrink-0 ma-1" Style=@ColorStyle()>
+					<MudText Class="ma-auto">Footer</MudText>
+				</MudCard>
+			</div>
+		</div>
+		break;
+	}
+	case StructureMethod.Html:
+	{
+		<div class=@Classname>
+			<div class="d-flex flex-column full-height">
+				<div>
+					<div class="d-flex flex-column flex-grow-1 flex-shrink-0">
+						<div class="d-flex flex-row flex-grow-1 flex-shrink-0">
+							<div class="d-flex flex-grow-1 flex-shrink-0 pa-1">
+								<div class="d-flex flex-grow-1 flex-shrink-0 mud-theme-primary rounded">
+									<div class="d-flex align-center justify-center full-size">
+										Header1 Left
+									</div>
+								</div>
+							</div>
+							<div class="d-flex flex-grow-1 flex-shrink-0 pa-1">
+								<div class="d-flex flex-grow-1 flex-shrink-0 mud-theme-secondary rounded">
+									<div class="d-flex align-center justify-center full-size">
+										Header1 Middle
+									</div>
+								</div>
+							</div>
+							<div class="d-flex flex-grow-1 flex-shrink-0 pa-1">
+								<div class="d-flex flex-grow-1 flex-shrink-0 mud-theme-tertiary rounded">
+									<div class="d-flex align-center justify-center full-size">
+										Header1 Right
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="d-flex flex-row flex-grow-1 flex-shrink-0">
+							<div class="d-flex flex-grow-1 flex-shrink-0 pa-1">
+								<div class="d-flex flex-grow-1 flex-shrink-0 mud-theme-primary rounded">
+									<div class="d-flex align-center justify-center full-size">
+										Header2 Left
+									</div>
+								</div>
+							</div>
+							<div class="d-flex flex-grow-1 flex-shrink-0 pa-1">
+								<div class="d-flex flex-grow-1 flex-shrink-0 mud-theme-tertiary rounded">
+									<div class="d-flex align-center justify-center full-size">
+										Header2 Right
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="d-flex flex-grow-1 flex-shrink-0">
+					<nav class="d-flex flex-grow-0 flex-shrink-0 pa-1" style="width: 12em;">
+						<div class="d-flex flex-grow-1 flex-shrink-0 mud-theme-primary rounded">
+							<div class="d-flex align-center justify-center full-size">
+								Nav
+							</div>
+						</div>
+					</nav>
+					<div class="d-flex flex-column flex-grow-1 flex-shrink-0">
+						<div class="d-flex flex-row flex-grow-1 flex-shrink-0">
+							<div class="d-flex flex-grow-1 flex-shrink-0 pa-1">
+								<div class="d-flex flex-grow-1 flex-shrink-0 mud-theme-secondary rounded">
+									<div class="d-flex align-center justify-center full-size">
+										Upper Left
+									</div>
+								</div>
+							</div>
+							<div class="d-flex flex-grow-1 flex-shrink-0 pa-1">
+								<div class="d-flex flex-grow-1 flex-shrink-0 mud-theme-tertiary rounded">
+									<div class="d-flex align-center justify-center full-size">
+										Upper Middle
+									</div>
+								</div>
+							</div>
+							<div class="d-flex flex-grow-1 flex-shrink-0 pa-1">
+								<div class="d-flex flex-grow-1 flex-shrink-0 mud-theme-primary rounded">
+									<div class="d-flex align-center justify-center full-size">
+										Upper Right
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="d-flex flex-row flex-grow-1 flex-shrink-0 pa-1">
+							<div class="d-flex flex-grow-1 flex-shrink-0 mud-theme-secondary rounded">
+								<div class="d-flex align-center justify-center full-size">
+									Middle
+								</div>
+							</div>						
+						</div>
+						<div class="d-flex flex-row flex-grow-1 flex-shrink-0 pa-1">
+							<div class="d-flex flex-grow-1 flex-shrink-0 mud-theme-tertiary rounded">
+								<div class="d-flex align-center justify-center full-size">
+									Lower
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="d-flex flex-grow-0 flex-shrink-0 pa-1" style="width: 12em;">
+						<div class="d-flex flex-grow-1 flex-shrink-0 mud-theme-primary rounded">
+							<div class="d-flex align-center justify-center full-size">
+								Right Margin
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="d-flex flex-grow-0 flex-shrink-1 pa-1">
+					<div class="d-flex flex-grow-1 flex-shrink-0 mud-theme-primary rounded">
+						<div class="d-flex align-center justify-center full-size">
+							Footer
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		break;
+	}
+	default:
+		throw new Exception("Unknown output format");
+}
+
+@code{
+	
+	[Parameter]
+	public string Class { get; set; } = "";
+	
+	[CascadingParameter]
+	public MudTheme? Theme { get; set; }
+	
+	public enum StructureMethod
+	{
+		Html,
+		MudBlazor
+	}
+	
+	private StructureMethod _structureMethod = StructureMethod.MudBlazor;
+    private string[] _validColors =
+    {
+		Colors.Amber.Default,
+		Colors.Blue.Default,
+		Colors.BlueGrey.Default,
+		Colors.Brown.Default,
+		Colors.Cyan.Default,
+		Colors.DeepOrange.Default,
+		Colors.DeepPurple.Default,
+		Colors.Green.Default,
+		Colors.Grey.Default,
+		Colors.Indigo.Default,
+		Colors.LightBlue.Default,
+		Colors.LightGreen.Default,
+		Colors.Lime.Default,
+		Colors.Orange.Default,
+		Colors.Pink.Default,
+		Colors.Purple.Default,
+		Colors.Red.Default,
+		Colors.Teal.Default,
+		Colors.Yellow.Default
+	};
+
+	protected string Classname =>
+		new CssBuilder("pa-1")
+			.AddClass(Class, when: !string.IsNullOrEmpty(Class))
+			.Build();	
+	
+	protected string RandomColor => _validColors[new Random().Next(_validColors.Length)];
+	
+	protected string ContrastColor(string bgColor)
+	{
+		// get color from hex
+		System.Drawing.Color color = (System.Drawing.Color)(new ColorConverter().ConvertFromString(bgColor) ?? System.Drawing.Color.Black);
+
+		// Counting the perceptive luminance - human eye favors green color...      
+		double luminance = (0.299 * color.R + 0.587 * color.G + 0.114 * color.B) / 255;
+
+		// bright color - dark contrast
+		var darkContrast = Theme.Palette.TextPrimary.ToString(MudColorOutputFormats.Hex);
+		
+		// dark color - bright contrast
+		var brightContrast = Theme.PaletteDark.TextPrimary.ToString(MudColorOutputFormats.Hex);
+
+		if (luminance > 0.5)
+			return darkContrast;
+		else
+			return brightContrast;
+	}
+
+	protected string ColorStyle(string style="")
+    {
+	    var color = RandomColor;
+        var textColor = ContrastColor(color);
+		return $"color: {textColor};background-color: {color};{style}";
+	}
+}

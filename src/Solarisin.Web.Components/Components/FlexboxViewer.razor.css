@@ -1,0 +1,10 @@
+﻿/* css height overrides to force full screen */
+html, body {
+    height: 100vh;
+}
+
+/* Give everything a red border to show flex boxes 
+* {
+    box-shadow: inset 0px 0px 0px 1px #f00;
+}
+*/
