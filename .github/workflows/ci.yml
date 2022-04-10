@@ -43,9 +43,6 @@ jobs:
       
       - name: Build Solution
         run: dotnet build ./src/Solarisin.Web.Components.sln
-      
-      - name: Create the package
-        run: dotnet pack --configuration Release ./src/Solarisin.Web.Components/Solarisin.Web.Components.csproj
         
       - name: Publish the package to GPR
         run: dotnet nuget push ./src/Solarisin.Web.Components/bin/Release/*.nupkg
