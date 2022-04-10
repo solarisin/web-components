@@ -42,7 +42,7 @@ jobs:
         run: dotnet restore ./src/Solarisin.Web.Components.sln
       
       - name: Build Solution
-        run: dotnet build ./src/Solarisin.Web.Components.sln
+        run: dotnet build --configuration Release ./src/Solarisin.Web.Components.sln
         
       - name: Publish the package to GPR
         run: dotnet nuget push -s github ./src/Solarisin.Web.Components/bin/Release/*.nupkg
