@@ -8,7 +8,7 @@
 
 
   <PropertyGroup>
-    <Version>6.0.0-alpha</Version>
+    <Version>6.0.0-alpha1</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageIcon>Nuget.png</PackageIcon>
     <Company>SolarisinNet</Company>
@@ -41,6 +41,10 @@
 
   <ItemGroup>
     <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 </Project>

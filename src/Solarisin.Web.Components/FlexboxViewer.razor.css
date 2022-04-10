@@ -3,8 +3,11 @@ html, body {
     height: 100vh;
 }
 
-/* Give everything a red border to show flex boxes 
-* {
-    box-shadow: inset 0px 0px 0px 1px #f00;
+.full-height {
+    height: 100%;
 }
-*/
+
+.full-size {
+    height: 100%;
+    width: 100%;
+}
