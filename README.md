@@ -1,5 +1,5 @@
 # Solarisin.Web.Components
-A collection of general web components provided as a NuGet package.
+A collection of general web components which use GitHub actions to automatically produce a NuGet package.
 
 ## Updating the package repository
 
