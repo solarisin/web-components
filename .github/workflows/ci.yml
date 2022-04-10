@@ -45,4 +45,4 @@ jobs:
         run: dotnet build ./src/Solarisin.Web.Components.sln
         
       - name: Publish the package to GPR
-        run: dotnet nuget push ./src/Solarisin.Web.Components/bin/Release/*.nupkg
+        run: dotnet nuget push -s github ./src/Solarisin.Web.Components/bin/Release/*.nupkg
