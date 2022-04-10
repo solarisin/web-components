@@ -1,4 +1,4 @@
-# web.components
+# Solarisin.Web.Components
 A collection of general web components provided as a NuGet package.
 
 ## Updating the package repository
