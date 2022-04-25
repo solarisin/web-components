@@ -28,13 +28,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="wwwroot\**" />
-    <Content Remove="wwwroot\**" />
-    <EmbeddedResource Remove="wwwroot\**" />
-    <None Remove="wwwroot\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="..\..\README.md" Pack="true" Visible="false" PackagePath="" />
     <None Include="..\..\LICENSE" Pack="true" Visible="false" PackagePath="" />
     <None Include="..\..\content\Nuget.png" Pack="true" Visible="false" PackagePath="" />
@@ -48,6 +41,20 @@
 
   <ItemGroup>
     <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup Condition="$(Configuration)=='Debug'">
+    <Reference Include="Solarisin.Core">
+      <HintPath>..\..\..\core\src\Solarisin.Core\bin\Debug\net6.0\Solarisin.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup Condition="$(Configuration)=='Release'">
+    <!-- TODO uncomment this after configuring the Solarisin.Core package -->
+    <!--<PackageReference Include="Solarisin.Core" Version="6.0.0-dev" />-->
+    <Reference Include="Solarisin.Core">
+      <HintPath>..\..\..\core\src\Solarisin.Core\bin\Release\net6.0\Solarisin.Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

@@ -2,6 +2,7 @@
 using MudBlazor;
 using MudBlazor.Utilities;
 using System.Drawing;
+using Solarisin.Core.Extensions;
 
 namespace Solarisin.Web.Components;
 using SystemColor = System.Drawing.Color;
@@ -38,7 +39,7 @@ public partial class FlexboxViewer
 	/// The site-wide MudTheme to be utilized.
 	/// </summary>
 	[CascadingParameter]
-	public MudTheme Theme { get; set; } = null!;
+	public MudTheme? Theme { get; set; }
 
 	#endregion
 
@@ -79,9 +80,9 @@ public partial class FlexboxViewer
     private string ContrastColor(string bgColor)
 	{
 		// Determine colors to use for dark and light backgrounds
-		var darkContrast = Theme.Palette.TextPrimary.ToString(MudColorOutputFormats.Hex);
-		var brightContrast = Theme.PaletteDark.TextPrimary.ToString(MudColorOutputFormats.Hex);
-		
+		var darkContrast = Theme?.Palette.TextPrimary.ToString(MudColorOutputFormats.Hex) ?? "#FFFFFF";
+		var brightContrast = Theme?.PaletteDark.TextPrimary.ToString(MudColorOutputFormats.Hex) ?? "#000000";
+
 		// System.Drawing.Color from hex
 		var color = (SystemColor)(new ColorConverter().ConvertFromString(bgColor) ?? SystemColor.Black);
 			
@@ -119,9 +120,14 @@ public partial class FlexboxViewer
 	};
 	
 	/// <summary>
-	/// Stores the list of randomly generated styles to be applied to the flexbox items.
+	/// The random number generator to be used to generate random styles.
 	/// </summary>
-    private string[] _styles = Array.Empty<string>();
+	private static readonly Random Random = new();
+	
+	/// <summary>
+	/// Stores the list of randomly generated hex color codes to be applied to the flexbox items.
+	/// </summary>
+    private string[] _hexColors = Array.Empty<string>();
     
 	/// <summary>
 	/// Randomly generate the styles to be applied to the flexbox items.
@@ -129,10 +135,11 @@ public partial class FlexboxViewer
 	/// <param name="count">The number of styles to generate.</param>
     private void GenerateStyles(int count)
 	{
-		_styles = new string[count];
+		Random.Shuffle(_validColors);
+		_hexColors = new string[count];
 		for (int i = 0; i < count; i++)
 		{
-			_styles[i] = _validColors[new Random().Next(_validColors.Length)];
+			_hexColors[i] = _validColors[i % _validColors.Length];
 		}
 	}
 
@@ -150,11 +157,11 @@ public partial class FlexboxViewer
 	private string ColorStyle(string style = "", int styleIndex = -1)
     {
         var nextStyleIndex = _nextStyleIndex++;
-        var modStyleIndex = nextStyleIndex % _styles.Length;
+        var modStyleIndex = nextStyleIndex % _hexColors.Length;
 
 		if (styleIndex == -1)
 			styleIndex = modStyleIndex;
-		var color = _styles[styleIndex];
+		var color = _hexColors[styleIndex];
 		var textColor = ContrastColor(color);
 		return $"color: {textColor};background-color: {color};{style}";
 	}

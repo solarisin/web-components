@@ -1,15 +1,21 @@
 @using MudBlazor
 @using Xunit.Abstractions
-@inject ITestOutputHelper output
 @code
 {
+    private readonly ITestOutputHelper _output;
+    
+    public FlexboxViewerTests(ITestOutputHelper output)
+    {
+        _output = output;
+    }
+    
     [Fact]
     public void TestMudBlazor()
     {
         using var ctx = new TestContext();
         
         MudTheme theme = new MudTheme();
-        
+
         var cut = ctx.RenderComponent<FlexboxViewer>(parameters => parameters
             .Add(p => p.Theme, theme)
             .Add(p => p.Structure, StructureMethod.MudBlazor)
@@ -17,7 +23,7 @@
         
         var flexBox = cut.Instance;
         Assert.Equal(StructureMethod.MudBlazor, flexBox.Structure);
-        output.WriteLine("TestMudBlazor structure name: {0}", flexBox.Structure.ToString());
+        _output.WriteLine("TestMudBlazor structure name: {0}", flexBox.Structure.ToString());
         
         Assert.Equal(theme, flexBox.Theme);
         
@@ -39,7 +45,7 @@
 
         var flexBox = cut.Instance;
         Assert.Equal(StructureMethod.Html, flexBox.Structure);
-        output.WriteLine("TestHtml structure name: {0}", flexBox.Structure.ToString());
+        _output.WriteLine("TestHtml structure name: {0}", flexBox.Structure.ToString());
         
         Assert.Equal(theme, flexBox.Theme);
         
