@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32317.152
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{85927E39-5644-4F6C-B5C2-2122AECCFC60}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		README.md = README.md
+		NuGet.Config = NuGet.Config
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solarisin.Web.Components", "src\Solarisin.Web.Components\Solarisin.Web.Components.csproj", "{9AB0EB72-859B-4E48-BAC1-756B6A544065}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solarisin.Web.Components.Test", "test\Solarisin.Web.Components.Test\Solarisin.Web.Components.Test.csproj", "{D337C179-DDA8-4095-8BCC-5BECF6DC2A6C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9AB0EB72-859B-4E48-BAC1-756B6A544065}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AB0EB72-859B-4E48-BAC1-756B6A544065}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AB0EB72-859B-4E48-BAC1-756B6A544065}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AB0EB72-859B-4E48-BAC1-756B6A544065}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D337C179-DDA8-4095-8BCC-5BECF6DC2A6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D337C179-DDA8-4095-8BCC-5BECF6DC2A6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D337C179-DDA8-4095-8BCC-5BECF6DC2A6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D337C179-DDA8-4095-8BCC-5BECF6DC2A6C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {607459EC-F0F7-4160-90CD-AB91203D1A99}
+	EndGlobalSection
+EndGlobal

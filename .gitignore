@@ -374,5 +374,5 @@ MigrationBackup/
 **/.idea/**/encodings.xml
 
 # Rider plugins
-/src/.idea/sonarlint/issuestore/**
-/src/.idea/.idea.*/.idea/dbnavigator.xml
+.idea/sonarlint/issuestore/**
+.idea/.idea.*/.idea/dbnavigator.xml
