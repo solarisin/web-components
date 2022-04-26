@@ -26,23 +26,30 @@ jobs:
       - uses: actions/checkout@v3
 
       # Authenticates packages to push to GPR
-      - name: Setup .NET
+      - name: Setup .NET 6
         uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: '6.0.x' # SDK Version to use.]
-        env:
-          NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
-      #Add the github nuget source see: https://github.com/actions/setup-dotnet/issues/167
-      - name: Add Github NuGet Package Source
-        shell: bash
-        run: dotnet nuget add source --username solarisin --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "http://nuget.pkg.github.com/solarisin/index.json"
-      
+          dotnet-version: '6.0.x' # SDK Version to use.
+          
+      - name: .NET Add NuGet source
+        run: dotnet nuget update source 'github' --username 'solarisin' --password '${{ secrets.GITHUB_TOKEN }}' --store-password-in-clear-text
+
       - name: .NET restore solution
-        run: dotnet restore ./src/Solarisin.Web.Components.sln
+        run: dotnet restore ./Solarisin.Web.Components.sln
       
-      - name: Build Solution
-        run: dotnet build --configuration Release ./src/Solarisin.Web.Components.sln
+      - name: .NET Build Solution
+        run: dotnet build ./Solarisin.Web.Components.sln --configuration Release --no-restore
         
-      - name: Publish the package to GPR
-        run: dotnet nuget push -s github ./src/Solarisin.Web.Components/bin/Release/*.nupkg
+      - name: .NET Execute Unit Tests
+        run: dotnet test --no-restore --verbosity normal
+        
+      - name: Upload .NET Unit Test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-artifacts
+          path: ./test/output/*
+        # Use always() to always run this step to publish test results when there are test failures
+        if: ${{ always() }}
+        
+      - name: Publish NuGet package to GitHub
+        run: dotnet nuget push ./src/Solarisin.Web.Components/bin/Release/*.nupkg --source 'github' --api-key '${{ secrets.GITHUB_TOKEN }}' --skip-duplicate
