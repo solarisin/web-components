@@ -80,9 +80,9 @@ public partial class FlexboxViewer
     private string ContrastColor(string bgColor)
 	{
 		// Determine colors to use for dark and light backgrounds
-		var darkContrast = Theme?.Palette.TextPrimary.ToString(MudColorOutputFormats.Hex) ?? "#FFFFFF";
-		var brightContrast = Theme?.PaletteDark.TextPrimary.ToString(MudColorOutputFormats.Hex) ?? "#000000";
-
+		var darkContrast = Theme?.Palette.TextPrimary.ToString(MudColorOutputFormats.Hex) ?? "#000000";
+		var brightContrast = Theme?.PaletteDark.TextPrimary.ToString(MudColorOutputFormats.Hex) ?? "#FFFFFF";
+		
 		// System.Drawing.Color from hex
 		var color = (SystemColor)(new ColorConverter().ConvertFromString(bgColor) ?? SystemColor.Black);
 			
