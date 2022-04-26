@@ -6,6 +6,11 @@
 		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 
+	<PropertyGroup>
+		<VSTestLogger>trx</VSTestLogger>
+		<VSTestResultsDirectory>$(SolutionDir)test\output</VSTestResultsDirectory>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<Using Include="Bunit" />
 		<Using Include="Bunit.TestDoubles" />
@@ -33,7 +38,4 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\..\src\Solarisin.Web.Components\Solarisin.Web.Components.csproj" />
 	</ItemGroup>
-
-
-
 </Project>
