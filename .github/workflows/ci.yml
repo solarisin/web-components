@@ -31,14 +31,14 @@ jobs:
         with:
           dotnet-version: '6.0.x' # SDK Version to use.
           
-      - name: Add NuGet source
+      - name: .NET Add NuGet source
         run: dotnet nuget update source 'github' --username 'solarisin' --password '${{ secrets.GITHUB_TOKEN }}' --store-password-in-clear-text
 
       - name: .NET restore solution
         run: dotnet restore ./Solarisin.Web.Components.sln
       
-      - name: Build Solution
-        run: dotnet build --configuration Release ./Solarisin.Web.Components.sln
+      - name: .NET Build Solution
+        run: dotnet build ./Solarisin.Web.Components.sln --configuration Release --no-restore
         
-      #- name: Publish the package to GPR
-      #  run: dotnet nuget push -s github ./src/Solarisin.Web.Components/bin/Release/*.nupkg
+      - name: Publish NuGet package to GitHub
+        run: dotnet nuget push ./src/Solarisin.Web.Components/bin/Release/*.nupkg --source 'github' --api-key '${{ secrets.GITHUB_TOKEN }}' --skip-duplicate
