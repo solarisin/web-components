@@ -35,13 +35,13 @@ jobs:
         run: dotnet nuget update source 'github' --username 'solarisin' --password '${{ secrets.GITHUB_TOKEN }}' --store-password-in-clear-text
 
       - name: .NET restore solution
-        run: dotnet restore ./Solarisin.Web.Components.sln
+        run: dotnet restore ./Solarisin.Web.Components.sln --configuration Release
       
       - name: .NET Build Solution
-        run: dotnet build ./Solarisin.Web.Components.sln --configuration Release --no-restore
+        run: dotnet build ./Solarisin.Web.Components.sln --no-restore --configuration Release
         
       - name: .NET Execute Unit Tests
-        run: dotnet test --no-restore --verbosity normal
+        run: dotnet test ./Solarisin.Web.Components.sln --no-restore --verbosity normal --configuration Release
         
       - name: Upload .NET Unit Test results
         uses: actions/upload-artifact@v3
