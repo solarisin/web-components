@@ -32,17 +32,12 @@ jobs:
           dotnet-version: '6.0.x' # SDK Version to use.]
         env:
           NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
-      #Add the github nuget source see: https://github.com/actions/setup-dotnet/issues/167
-      - name: Add Github NuGet Package Source
-        shell: bash
-        run: dotnet nuget add source --username solarisin --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "http://nuget.pkg.github.com/solarisin/index.json"
-      
+
       - name: .NET restore solution
-        run: dotnet restore ./src/Solarisin.Web.Components.sln
+        run: dotnet restore ./Solarisin.Web.Components.sln
       
       - name: Build Solution
-        run: dotnet build --configuration Release ./src/Solarisin.Web.Components.sln
+        run: dotnet build --configuration Release ./Solarisin.Web.Components.sln
         
-      - name: Publish the package to GPR
-        run: dotnet nuget push -s github ./src/Solarisin.Web.Components/bin/Release/*.nupkg
+      #- name: Publish the package to GPR
+      #  run: dotnet nuget push -s github ./src/Solarisin.Web.Components/bin/Release/*.nupkg
