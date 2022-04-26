@@ -376,3 +376,4 @@ MigrationBackup/
 # Rider plugins
 .idea/sonarlint/issuestore/**
 .idea/.idea.*/.idea/dbnavigator.xml
+/.idea/.idea.Solarisin.Web.Components/.idea/misc.xml

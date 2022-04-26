@@ -4,12 +4,10 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <PackageVersion>6.0.0-alpha2</PackageVersion>
   </PropertyGroup>
 
-
   <PropertyGroup>
-    <Version>6.0.0-alpha1</Version>
+    <PackageVersion>6.0.0-dev.1</PackageVersion>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageIcon>Nuget.png</PackageIcon>
     <Company>SolarisinNet</Company>
@@ -51,11 +49,7 @@
   </ItemGroup>
 
   <ItemGroup Condition="$(Configuration)=='Release'">
-    <!-- TODO uncomment this after configuring the Solarisin.Core package -->
-    <!--<PackageReference Include="Solarisin.Core" Version="6.0.0-dev" />-->
-    <Reference Include="Solarisin.Core">
-      <HintPath>..\..\..\core\src\Solarisin.Core\bin\Release\net6.0\Solarisin.Core.dll</HintPath>
-    </Reference>
+    <PackageReference Include="Solarisin.Core" Version="6.*-*" />
   </ItemGroup>
 
 </Project>

@@ -7,9 +7,8 @@ A collection of general web components which use GitHub actions to automatically
 - Remember to update the version
 
 ```
-dotnet nuget push "Solarisin.Web.Components/bin/Release/Solarisin.Web.Components.6.0.0-alpha.nupkg" --api-key %GITHUB_TOKEN% --source "github"
+dotnet nuget push "./Solarisin.Web.Components/bin/Release/Solarisin.Web.Components.6.0.0-dev.1.nupkg" --api-key %GITHUB_TOKEN% --source "github"
 ```
-
 
 ## Components
 
