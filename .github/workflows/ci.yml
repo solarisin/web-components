@@ -32,7 +32,7 @@ jobs:
           dotnet-version: '6.0.x' # SDK Version to use.
           
       - name: Add NuGet source
-        run: dotnet nuget add source "https://nuget.pkg.github.com/solarisin/index.json" --name "github" --username "solarisin" --password "${{ secrets.GITHUB_TOKEN }}"
+        run: dotnet nuget update source 'github' --username 'solarisin' --password '${{ secrets.GITHUB_TOKEN }}' --store-password-in-clear-text
 
       - name: .NET restore solution
         run: dotnet restore ./Solarisin.Web.Components.sln
