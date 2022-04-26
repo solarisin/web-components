@@ -29,9 +29,10 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: '6.0.x' # SDK Version to use.]
-        env:
-          NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          dotnet-version: '6.0.x' # SDK Version to use.
+          
+      - name: Add NuGet source
+        run: dotnet nuget add source "https://nuget.pkg.github.com/solarisin/index.json" --name "github" --username "solarisin" --password "${{ secrets.GITHUB_TOKEN }}"
 
       - name: .NET restore solution
         run: dotnet restore ./Solarisin.Web.Components.sln
