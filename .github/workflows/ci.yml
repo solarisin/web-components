@@ -34,11 +34,8 @@ jobs:
       - name: .NET Add NuGet source
         run: dotnet nuget update source 'github' --username 'solarisin' --password '${{ secrets.GITHUB_TOKEN }}' --store-password-in-clear-text
 
-      - name: .NET restore solution
-        run: dotnet restore ./Solarisin.Web.Components.sln --configuration Release
-      
       - name: .NET Build Solution
-        run: dotnet build ./Solarisin.Web.Components.sln --no-restore --configuration Release
+        run: dotnet build ./Solarisin.Web.Components.sln --configuration Release
         
       - name: .NET Execute Unit Tests
         run: dotnet test ./Solarisin.Web.Components.sln --no-restore --verbosity normal --configuration Release
