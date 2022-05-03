@@ -32,7 +32,7 @@ jobs:
           dotnet-version: '6.0.x' # SDK Version to use.
           
       - name: .NET Add NuGet source
-        run: dotnet nuget update source 'github' --username 'solarisin' --password '${{ secrets.NUGET_GITHUB_TOKEN }}' --store-password-in-clear-text
+        run: dotnet nuget update source 'github' --username 'solarisin' --password '${{ secrets.GITHUB_TOKEN }}' --store-password-in-clear-text
 
       - name: .NET Build Solution
         run: dotnet build ./Solarisin.Web.Components.sln --configuration Release
@@ -49,4 +49,4 @@ jobs:
         if: ${{ always() }}
         
       - name: Publish NuGet package to GitHub
-        run: dotnet nuget push ./src/Solarisin.Web.Components/bin/Release/*.nupkg --source 'github' --api-key '${{ secrets.NUGET_GITHUB_TOKEN }}' --skip-duplicate
+        run: dotnet nuget push ./src/Solarisin.Web.Components/bin/Release/*.nupkg --source 'github' --api-key '${{ secrets.GITHUB_TOKEN }}' --skip-duplicate
