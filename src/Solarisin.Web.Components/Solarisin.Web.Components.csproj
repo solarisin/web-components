@@ -14,9 +14,9 @@
     <Authors>solarisin</Authors>
     <Copyright>Copyright 2022 Rob Longbottom</Copyright>
     <Description>My collection of Blazor components.</Description>
-    <PackageProjectUrl>https://github.com/solarisin/web.components</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/solarisin/web-components</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <RepositoryUrl>https://github.com/solarisin/web.components</RepositoryUrl>
+    <RepositoryUrl>https://github.com/solarisin/web-components</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
