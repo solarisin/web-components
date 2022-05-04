@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageVersion>6.0.0-dev.3</PackageVersion>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageIcon>Nuget.png</PackageIcon>
     <Company>SolarisinNet</Company>
@@ -22,7 +21,6 @@
 
   <PropertyGroup>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
