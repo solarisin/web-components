@@ -1,5 +1,3 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
 # Controls when the workflow will run
@@ -16,7 +14,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  build-test-release:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -25,28 +23,58 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # Authenticates packages to push to GPR
-      - name: Setup .NET 6
-        uses: actions/setup-dotnet@v2
+      - name: Setup .NET build dependencies
+        uses: ./.github/workflows/composite/bootstrap-dotnet
         with:
-          dotnet-version: '6.0.x' # SDK Version to use.
-          
-      - name: .NET Add NuGet source
-        run: dotnet nuget update source 'github' --username 'solarisin' --password '${{ secrets.GITHUB_TOKEN }}' --store-password-in-clear-text
-
+          github-packages: true
+          github-username: ${{ github.actor }}
+          github-secret: ${{ secrets.GITHUB_TOKEN }}
+            
       - name: .NET Build Solution
         run: dotnet build ./Solarisin.Web.Components.sln --configuration Release
         
       - name: .NET Execute Unit Tests
         run: dotnet test ./Solarisin.Web.Components.sln --no-restore --verbosity normal --configuration Release
-        
-      - name: Upload .NET Unit Test results
-        uses: actions/upload-artifact@v3
-        with:
-          name: test-artifacts
-          path: ./test/output/*
-        # Use always() to always run this step to publish test results when there are test failures
+          
+      - name: Parse Trx files
         if: ${{ always() }}
+        uses: solarisin/trx-parser@dev3
+        id: trx-parser
+        with:
+          TRX_PATH: ./test/output/
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BADGE_STYLE: emoji
         
-      - name: Publish NuGet package to GitHub
-        run: dotnet nuget push ./src/Solarisin.Web.Components/bin/Release/*.nupkg --source 'github' --api-key '${{ secrets.GITHUB_TOKEN }}' --skip-duplicate
+  build-test-debug:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      - name: Setup .NET build dependencies
+        uses: ./.github/workflows/composite/bootstrap-dotnet
+        with:
+          github-packages: true
+          github-username: ${{ github.actor }}
+          github-secret: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: .NET Build Solution
+        env:
+          CI_BUILD: true
+        run: dotnet build ./Solarisin.Web.Components.sln --configuration Debug
+
+      # TODO: add code coverage for debug build
+      - name: .NET Execute Unit Tests
+        run: dotnet test ./Solarisin.Web.Components.sln --no-restore --verbosity normal --configuration Debug
+
+      - name: Parse Trx files
+        if: ${{ always() }}
+        uses: solarisin/trx-parser@dev3
+        id: trx-parser
+        with:
+          TRX_PATH: ./test/output/
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BADGE_STYLE: emoji

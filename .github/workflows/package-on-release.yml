@@ -1,0 +1,48 @@
+﻿name: Publish NuGet Package
+
+on:
+  release:
+    types: [published]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - name: Determine package version
+        uses: actions/github-script@v4
+        id: get-version
+        env:
+          TAG_NAME: ${{ github.event.release.tag_name }}
+        with:
+          script: |
+            const { TAG_NAME } = process.env;
+            const release_ver = `${TAG_NAME}`;
+            let no_v = release_ver;
+            if(release_ver.startsWith('v')) {
+              no_v = release_ver.substring(1);
+            }
+            core.setOutput('package-version', no_v);
+
+      - uses: actions/checkout@v3
+
+      - name: Setup .NET build dependencies
+        uses: ./.github/workflows/composite/bootstrap-dotnet
+        with:
+          github-packages: true
+          github-username: ${{ github.actor }}
+          github-secret: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: .NET Build Solution
+        run: dotnet build ./src/Solarisin.Web.Components/Solarisin.Web.Components.csproj -p:Version=${{steps.get-version.outputs.package-version}} --configuration Release
+
+      - name: Create the package
+        run: dotnet pack ./src/Solarisin.Web.Components/Solarisin.Web.Components.csproj -p:PackageVersion=${{steps.get-version.outputs.package-version}} --configuration Release
+        
+      - name: Publish NuGet package to GitHub
+        run: dotnet nuget push ./src/Solarisin.Web.Components/bin/Release/*.nupkg --source 'github' --api-key '${{ secrets.GITHUB_TOKEN }}' --skip-duplicate
