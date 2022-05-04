@@ -44,5 +44,5 @@ jobs:
       - name: Create the package
         run: dotnet pack ./src/Solarisin.Web.Components/Solarisin.Web.Components.csproj -p:PackageVersion=${{steps.get-version.outputs.package-version}} --configuration Release
         
-      #- name: Publish NuGet package to GitHub
-      #  run: dotnet nuget push ./src/Solarisin.Web.Components/bin/Release/*.nupkg --source 'github' --api-key '${{ secrets.GITHUB_TOKEN }}' --skip-duplicate
+      - name: Publish NuGet package to GitHub
+        run: dotnet nuget push ./src/Solarisin.Web.Components/bin/Release/*.nupkg --source 'github' --api-key '${{ secrets.GITHUB_TOKEN }}' --skip-duplicate
