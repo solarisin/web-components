@@ -46,7 +46,7 @@
     </Reference>
   </ItemGroup>
 
-  <ItemGroup Condition="$(Configuration)=='Release'">
+  <ItemGroup Condition="$(Configuration)=='Release' Or $(CI_BUILD)=='true'">
     <PackageReference Include="Solarisin.Core" Version="6.*-*" />
   </ItemGroup>
 

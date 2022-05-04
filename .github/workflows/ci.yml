@@ -62,6 +62,8 @@ jobs:
           github-secret: ${{ secrets.GITHUB_TOKEN }}
 
       - name: .NET Build Solution
+        env:
+          CI_BUILD: true
         run: dotnet build ./Solarisin.Web.Components.sln --configuration Debug
 
       # TODO: add code coverage for debug build
