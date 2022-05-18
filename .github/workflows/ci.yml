@@ -24,17 +24,19 @@ jobs:
           github-username: ${{ github.actor }}
           github-secret: ${{ secrets.GITHUB_TOKEN }}
       - name: Execute dotnet restore
+        if: false == true
         run: >
           dotnet restore ${{ env.SOLUTION_PATH }}
           --configfile nuget.config
           --verbosity detailed
-        shell: bash
+        shell: cmd
       - name: Execute dotnet build
         run: >
           dotnet build ${{ env.SOLUTION_PATH }}
           --configuration ${{ env.CONFIGURATION }}
-          --no-restore
-        shell: bash
+          --configfile nuget.config
+          --verbosity detailed
+        shell: cmd
       - name: Execute dotnet test
         run: >
           dotnet test ${{ env.SOLUTION_PATH }}
@@ -43,7 +45,7 @@ jobs:
           --settings coverlet.runsettings
           --collect:"XPlat Code Coverage"
           --logger:trx --no-restore
-        shell: bash
+        shell: cmd
       - name: Parse TRX File
         if: ${{ always() }}
         uses: solarisin/trx-parser@dev3
@@ -70,7 +72,7 @@ jobs:
           github-username: ${{ github.actor }}
           github-secret: ${{ secrets.GITHUB_TOKEN }}
       - name: Execute dotnet restore
-        if: ${{ never() }}
+        if: false == true
         run: >
           dotnet restore ${{ env.SOLUTION_PATH }}
           --configfile nuget.config
