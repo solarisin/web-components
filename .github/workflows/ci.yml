@@ -70,6 +70,7 @@ jobs:
           github-username: ${{ github.actor }}
           github-secret: ${{ secrets.GITHUB_TOKEN }}
       - name: Execute dotnet restore
+        if: ${{ never() }}
         run: >
           dotnet restore ${{ env.SOLUTION_PATH }}
           --configfile nuget.config
@@ -79,7 +80,8 @@ jobs:
         run: >
           dotnet build ${{ env.SOLUTION_PATH }}
           --configuration ${{ env.CONFIGURATION }}
-          --no-restore
+          --configfile nuget.config
+          --verbosity detailed
         shell: cmd
       - name: Execute dotnet test
         run: >
