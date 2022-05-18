@@ -27,7 +27,7 @@ jobs:
         run: >
           dotnet build ${{ env.SOLUTION_PATH }}
           --configuration ${{ env.CONFIGURATION }}
-        shell: run
+        shell: bash
       - name: Execute dotnet test
         run: >
           dotnet test ${{ env.SOLUTION_PATH }}
@@ -36,7 +36,7 @@ jobs:
           --settings coverlet.runsettings
           --collect:"XPlat Code Coverage"
           --logger:trx --no-restore
-        shell: run
+        shell: bash
       - name: Parse TRX File
         if: ${{ always() }}
         uses: solarisin/trx-parser@dev3
@@ -66,7 +66,7 @@ jobs:
         run: >
           dotnet build ${{ env.SOLUTION_PATH }}
           --configuration ${{ env.CONFIGURATION }}
-        shell: run
+        shell: cmd
       - name: Execute dotnet test
         run: >
           dotnet test ${{ env.SOLUTION_PATH }}
@@ -75,7 +75,7 @@ jobs:
           --settings coverlet.runsettings
           --collect:"XPlat Code Coverage"
           --logger:trx --no-restore
-        shell: run
+        shell: cmd
       - name: Parse TRX File
         if: ${{ always() }}
         uses: solarisin/trx-parser@dev3
