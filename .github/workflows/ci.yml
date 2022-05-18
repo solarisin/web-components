@@ -1,18 +1,17 @@
 name: CI
-
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
   workflow_dispatch:
-
 jobs:
   build-test-release:
     runs-on: ubuntu-latest
     env:
-      TRX_DIRECTORY: ./test/output/Release
-      CONFIGURATION: Release
+      SOLUTION_PATH: ./Solarisin.Web.Components.sln
+      CONFIGURATION: Debug
+      TRX_DIRECTORY: ./test/output/Debug
     steps:
       - name: Clone repository
         uses: actions/checkout@v3
@@ -26,12 +25,12 @@ jobs:
           github-secret: ${{ secrets.GITHUB_TOKEN }}
       - name: Execute dotnet build
         run: >
-          dotnet build ./Solarisin.Web.Components.sln
+          dotnet build ${{ env.SOLUTION_PATH }}
           --configuration ${{ env.CONFIGURATION }}
         shell: run
       - name: Execute dotnet test
         run: >
-          dotnet test ./Solarisin.Web.Components.sln
+          dotnet test ${{ env.SOLUTION_PATH }}
           --configuration ${{ env.CONFIGURATION }}
           --verbosity normal
           --settings coverlet.runsettings
@@ -49,8 +48,9 @@ jobs:
   build-test-analyze-debug:
     runs-on: windows-latest
     env:
-      TRX_DIRECTORY: ./test/output/Debug
+      SOLUTION_PATH: ./Solarisin.Web.Components.sln
       CONFIGURATION: Debug
+      TRX_DIRECTORY: ./test/output/Debug
     steps:
       - name: Clone repository
         uses: actions/checkout@v3
@@ -64,12 +64,12 @@ jobs:
           github-secret: ${{ secrets.GITHUB_TOKEN }}
       - name: Execute dotnet build
         run: >
-          dotnet build ./Solarisin.Web.Components.sln
+          dotnet build ${{ env.SOLUTION_PATH }}
           --configuration ${{ env.CONFIGURATION }}
         shell: run
       - name: Execute dotnet test
         run: >
-          dotnet test ./Solarisin.Web.Components.sln
+          dotnet test ${{ env.SOLUTION_PATH }}
           --configuration ${{ env.CONFIGURATION }}
           --verbosity normal
           --settings coverlet.runsettings
