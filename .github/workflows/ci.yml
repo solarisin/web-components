@@ -32,6 +32,7 @@ jobs:
         run: >
           dotnet test .
           --configuration ${{ env.CONFIGURATION }}
+          --results-directory ${{ env.TRX_DIRECTORY }}
           --settings coverlet.runsettings
           --collect:"XPlat Code Coverage"
           --logger:trx
@@ -68,6 +69,7 @@ jobs:
         run: >
           dotnet test .
           --configuration ${{ env.CONFIGURATION }}
+          --results-directory ${{ env.TRX_DIRECTORY }}
           --settings coverlet.runsettings
           --collect:"XPlat Code Coverage"
           --logger:trx
