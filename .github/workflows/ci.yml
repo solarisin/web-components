@@ -29,14 +29,11 @@ jobs:
           dotnet restore ${{ env.SOLUTION_PATH }}
           --configfile nuget.config
           --verbosity detailed
-        shell: cmd
       - name: Execute dotnet build
         run: >
           dotnet build ${{ env.SOLUTION_PATH }}
           --configuration ${{ env.CONFIGURATION }}
           --configfile nuget.config
-          --verbosity detailed
-        shell: cmd
       - name: Execute dotnet test
         run: >
           dotnet test ${{ env.SOLUTION_PATH }}
@@ -45,7 +42,6 @@ jobs:
           --settings coverlet.runsettings
           --collect:"XPlat Code Coverage"
           --logger:trx --no-restore
-        shell: cmd
       - name: Parse TRX File
         if: ${{ always() }}
         uses: solarisin/trx-parser@dev3
@@ -77,14 +73,11 @@ jobs:
           dotnet restore ${{ env.SOLUTION_PATH }}
           --configfile nuget.config
           --verbosity detailed
-        shell: cmd
       - name: Execute dotnet build
         run: >
           dotnet build ${{ env.SOLUTION_PATH }}
           --configuration ${{ env.CONFIGURATION }}
           --configfile nuget.config
-          --verbosity detailed
-        shell: cmd
       - name: Execute dotnet test
         run: >
           dotnet test ${{ env.SOLUTION_PATH }}
@@ -93,7 +86,6 @@ jobs:
           --settings coverlet.runsettings
           --collect:"XPlat Code Coverage"
           --logger:trx --no-restore
-        shell: cmd
       - name: Parse TRX File
         if: ${{ always() }}
         uses: solarisin/trx-parser@dev3
