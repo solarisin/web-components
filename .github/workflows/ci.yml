@@ -5,11 +5,12 @@ on:
   pull_request:
     branches: [ main ]
   workflow_dispatch:
+env:
+  CI_BUILD: true
 jobs:
   build-test-release:
     runs-on: ubuntu-latest
     env:
-      SOLUTION_PATH: ./Solarisin.Web.Components.sln
       CONFIGURATION: Debug
       TRX_DIRECTORY: ./test/output/Debug
     steps:
@@ -23,25 +24,18 @@ jobs:
           github-packages: true
           github-username: ${{ github.actor }}
           github-secret: ${{ secrets.GITHUB_TOKEN }}
-      - name: Execute dotnet restore
-        if: false == true
-        run: >
-          dotnet restore ${{ env.SOLUTION_PATH }}
-          --configfile nuget.config
-          --verbosity detailed
       - name: Execute dotnet build
         run: >
-          dotnet build ${{ env.SOLUTION_PATH }}
+          dotnet build .
           --configuration ${{ env.CONFIGURATION }}
-          --configfile nuget.config
       - name: Execute dotnet test
         run: >
-          dotnet test ${{ env.SOLUTION_PATH }}
+          dotnet test .
           --configuration ${{ env.CONFIGURATION }}
-          --verbosity normal
           --settings coverlet.runsettings
           --collect:"XPlat Code Coverage"
-          --logger:trx --no-restore
+          --logger:trx
+          --no-restore
       - name: Parse TRX File
         if: ${{ always() }}
         uses: solarisin/trx-parser@dev3
@@ -53,7 +47,6 @@ jobs:
   build-test-analyze-debug:
     runs-on: windows-latest
     env:
-      SOLUTION_PATH: ./Solarisin.Web.Components.sln
       CONFIGURATION: Debug
       TRX_DIRECTORY: ./test/output/Debug
     steps:
@@ -67,25 +60,18 @@ jobs:
           github-packages: true
           github-username: ${{ github.actor }}
           github-secret: ${{ secrets.GITHUB_TOKEN }}
-      - name: Execute dotnet restore
-        if: false == true
-        run: >
-          dotnet restore ${{ env.SOLUTION_PATH }}
-          --configfile nuget.config
-          --verbosity detailed
       - name: Execute dotnet build
         run: >
-          dotnet build ${{ env.SOLUTION_PATH }}
+          dotnet build .
           --configuration ${{ env.CONFIGURATION }}
-          --configfile nuget.config
       - name: Execute dotnet test
         run: >
-          dotnet test ${{ env.SOLUTION_PATH }}
+          dotnet test .
           --configuration ${{ env.CONFIGURATION }}
-          --verbosity normal
           --settings coverlet.runsettings
           --collect:"XPlat Code Coverage"
-          --logger:trx --no-restore
+          --logger:trx
+          --no-restore
       - name: Parse TRX File
         if: ${{ always() }}
         uses: solarisin/trx-parser@dev3
